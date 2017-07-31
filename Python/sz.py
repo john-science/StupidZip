@@ -19,14 +19,15 @@ import os
 import sys
 
 # CONFIGURABLE DECOMPRESSION SETTINGS  (VERBOSE? True / False)
-TWO_POINT = {'.tar.gz':  {False: 'tar xzf %s',  True: 'tar xzfv %s'},
-             '.tar.bz2': {False: 'tar xjf %s',  True: 'tar xjfv %s'},
+TWO_POINT = {'.tar.bz2': {False: 'tar xjf %s',  True: 'tar xjfv %s'},
+             '.tar.gz':  {False: 'tar xzf %s',  True: 'tar xzfv %s'},
              '.tar.xz':  {False: 'tar xJf %s',  True: 'tar xJfv %s'}}
 
-ONE_POINT = {'.tar':     {False: 'tar xf %s',   True: 'tar xvf %s'},
+ONE_POINT = {'.bz2':     {False: 'bzip2 -d %s', True: 'bzip2 -dv %s'},
              '.gz':      {False: 'gunzip %s',   True: 'gunzip -v %s'},
-             '.zip':     {False: 'unzip %s',    True: 'unzip -v %s'},
-             '.bz2':     {False: 'bzip2 -d %s', True: 'bzip2 -dv %s'}}
+             '.tar':     {False: 'tar xf %s',   True: 'tar xvf %s'},
+             '.tgz':     {False: 'tar xzf %s',  True: 'tar xzfv %s'},
+             '.zip':     {False: 'unzip %s',    True: 'unzip -v %s'}}
 
 # CONFIGURABLE COMPRESSION OPTION  (VERBOSE? True / False)
 COMPRESS = {False: 'tar zcf %s.tar.gz %s', True: 'tar zcfv %s.tar.gz %s'}
