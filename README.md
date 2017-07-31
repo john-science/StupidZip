@@ -13,17 +13,17 @@ Can't we just have one tool that looks at your file name and does the thing that
 
 Look, here is the functionality we want.  Just uncompress the compressed:
 
-    $ sz whatever.tar.gz        # runs: tar xzvf whatever.tar.gz
-    $ sz whatever.tar           # runs: tar -xf whatever.tar
+    $ sz whatever.tar.gz        # runs: tar xzf whatever.tar.gz
+    $ sz whatever.tar           # runs: tar xf whatever.tar
     $ sz whatever.gz            # runs: gunzip whatever.gz
     $ sz whatever.zip           # runs: unzip whatever.zip
     $ sz whatever.bz2           # runs: bzip2 -d whatever.bz2
-    $ sz whatever.tar.bz2       # runs: tar -xjf whatever.tar.bz2
-    $ sz whatever.tar.xz        # runs: tar xvfJ whatever.tar.xz
+    $ sz whatever.tar.bz2       # runs: tar xjf whatever.tar.bz2
+    $ sz whatever.tar.xz        # runs: tar xJf whatever.tar.xz
 
 And tar-gzip the uncompressed:
 
-    $ sz whatever               # runs: tar -zcf whatever.tar.gz whatever
+    $ sz whatever               # runs: tar zcf whatever.tar.gz whatever
 
 And if you pass a big list of files (or directories) it does the correct thing for each of them.
 
