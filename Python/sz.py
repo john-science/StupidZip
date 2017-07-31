@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """ StupidZip
 
     This is a utility script to help you compress and uncompress files,
@@ -69,7 +70,7 @@ def handle_one_path(path, verbose):
             return
 
     # if not, then compress it
-    os.system(COMPRESS[ending][verbose] % (path, path))
+    os.system(COMPRESS[verbose] % (path, path))
 
 
 if __name__ == '__main__':
