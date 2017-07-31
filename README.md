@@ -9,6 +9,8 @@ Why are we still memorizing tar flags?
 
 ![XKCD on tar](https://imgs.xkcd.com/comics/tar.png)
 
+(Source: https://xkcd.com/1168/)
+
 Can't we just have one tool that looks at your file name and does the thing that you obviously want to do?  It is not that complicated.
 
 Look, here is the functionality we want.  Just uncompress the compressed:
