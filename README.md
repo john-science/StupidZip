@@ -3,7 +3,7 @@
 > StupidZip is just smarter.™
 
 
-## The Entire Specification
+## The Specification
 
 Why are we still memorizing tar flags?
 
