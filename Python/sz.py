@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-StupidZip 0.7
+StupidZip
 Usage: sz [-vh] [FILE or DIRECTORY]...
 Decompress compressed FILEs or DIRECTORYs in-place, and
 compress uncompressed FILEs or DIRECTORYs in-place.
@@ -8,7 +8,6 @@ compress uncompressed FILEs or DIRECTORYs in-place.
 Optional Arguments:
   -v, --verbose  verbose mode
   -h, --help     give this help
-      --version  give this help
 
 At least one FILE or DIRECTORY path must be provided.
 
@@ -34,7 +33,7 @@ ONE_PART = {'.bz2':     {False: 'bzip2 -d %s',            True: 'bzip2 -dv %s'},
 COMPRESS = {False: 'tar zcf %s.tar.gz %s && rm -rf %s', True: 'tar zcfv %s.tar.gz %s && rm -rf %s'}
 
 # CONSTANTS (DO NOT TOUCH)
-HELP_FLAGS = ['-h', '--h', '-help', '--help', '--version']
+HELP_FLAGS = ['-h', '--h', '-help', '--help']
 VERBOSE_FLAGS = ['-v', '--v', '-verbose', '--verbose']
 
 
