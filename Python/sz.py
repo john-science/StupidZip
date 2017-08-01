@@ -25,6 +25,7 @@ TWO_POINT = {'.tar.bz2': {False: 'tar xjf %s',  True: 'tar xjfv %s'},
 ONE_POINT = {'.bz2':     {False: 'bzip2 -d %s', True: 'bzip2 -dv %s'},
              '.gz':      {False: 'gunzip %s',   True: 'gunzip -v %s'},
              '.tar':     {False: 'tar xf %s',   True: 'tar xvf %s'},
+             '.tbz2':    {False: 'tar xjf %s',  True: 'tar xjfv %s'},
              '.tgz':     {False: 'tar xzf %s',  True: 'tar xzfv %s'},
              '.zip':     {False: 'unzip %s',    True: 'unzip -v %s'}}
 
