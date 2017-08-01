@@ -3,13 +3,11 @@
 > StupidZip is just smarter.™
 
 
-## The Specification
+## The Goal
 
 Why are we still memorizing tar flags?
 
 ![XKCD on tar](https://imgs.xkcd.com/comics/tar.png)
-
-(Source: https://xkcd.com/1168/)
 
 Can't we just have one tool that looks at your file name and does the thing that you obviously want to do?  It is not that complicated.
 
@@ -34,8 +32,6 @@ And if you pass a big list of files (or directories) it does the correct thing f
 
 Fine. If you give this program a `-v` flag it will run whatever you are doing in verbose mode; assuming that is possible.
 
-But that is the **ONLY** flag this program will ever have.  We are not going to create more things to memorize.
-
 
 #### What if there are errors?
 
@@ -53,6 +49,6 @@ This program will not be bullet proof.  It will not have the full power of all t
 
 ## The Implementation
 
-This tool should work for any POSIX-style commandline interface.
+This tool should work for any POSIX-style commandline.
 
 At first, this will be a single Python script. That will serve as a feature reference. Over time, versions will be added in other languages so that users can hack the program in the language of their choice.
