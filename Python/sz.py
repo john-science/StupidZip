@@ -71,6 +71,7 @@ def handle_one_path(path, verbose):
             return
 
     # if not, then compress it
+    path = path.rstrip('/').rstrip('\')
     os.system(COMPRESS[verbose] % (path, path))
 
 
