@@ -3,7 +3,7 @@
 StupidZip
 Usage: sz [-vh] [FILE or DIRECTORY]...
 Decompress compressed FILEs or DIRECTORYs in-place, and
-compress uncompressed FILEs or DIRECTORYs in-place.
+tar-gzip uncompressed FILEs or DIRECTORYs in-place.
 
 Optional Arguments:
   -v, --verbose  verbose mode
