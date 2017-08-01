@@ -1,19 +1,18 @@
 #!/usr/bin/env python
-""" StupidZip
+"""
+StupidZip 0.7
+Usage: sz [-vh] [FILE or DIRECTORY]...
+Decompress compressed FILEs or DIRECTORYs in-place, and
+compress uncompressed FILEs or DIRECTORYs in-place.
 
-    This is a utility script to help you compress and uncompress files,
-    without having to memorize all of the annoying flags and options
-    in those tools.
+Optional Arguments:
+  -v, --verbose  verbose mode
+  -h, --help     give this help
+      --version  give this help
 
-    This is the reference implementation of StupidZip.
-    All future versions must conform to the behaivor in this script.
-    The support for compression utiltities, commandline/flag behavior,
-    and how it handles errors all must match this script.
+At least one FILE or DIRECTORY path must be provided.
 
-    This script is designed for POSIX-style commandlines.
-
-    This script MUST conform to both the Python v2.x and v3.x standards,
-    to support as many users as possible.
+Report bugs to <https://github.com/theJollySin/StupidZip/issues>.
 """
 import os
 import sys
@@ -33,19 +32,35 @@ ONE_POINT = {'.bz2':     {False: 'bzip2 -d %s', True: 'bzip2 -dv %s'},
 COMPRESS = {False: 'tar zcf %s.tar.gz %s', True: 'tar zcfv %s.tar.gz %s'}
 
 # CONSTANTS (DO NOT TOUCH)
+HELP_FLAGS = ['-h', '--h', '-help', '--help', '--version']
 VERBOSE_FLAGS = ['-v', '--v', '-verbose', '--verbose']
 
 
 def main():
+    """ parse commandline and direct the primary tasks
+    """
+    # handle help flag
+    if [f for f in sys.argv[1:] if f.lower() in HELP_FLAGS]:
+        usage()
+
     # Determine if the user wants a verbose output
     verbose = False
     paths = [f for f in sys.argv[1:] if f.lower() not in VERBOSE_FLAGS]
-    if len(paths) < len(sys.argv[1:]):
+    if len(paths) == 0:
+        usage()
+    elif len(paths) < len(sys.argv[1:]):
         verbose = True
 
     # handle the full list of file / directory paths, one at a time
     for path in paths:
         handle_one_path(path, verbose)
+
+
+def usage():
+    ''' Print the help menu.
+    '''
+    print(__doc__.strip())
+    exit()
 
 
 def handle_one_path(path, verbose):
@@ -71,7 +86,7 @@ def handle_one_path(path, verbose):
             return
 
     # if not, then compress it
-    path = path.rstrip('/').rstrip('\')
+    path = path.rstrip('/').rstrip('\\')
     os.system(COMPRESS[verbose] % (path, path))
 
 
