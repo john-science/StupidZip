@@ -18,19 +18,19 @@ import os
 import sys
 
 # CONFIGURABLE DECOMPRESSION SETTINGS  (VERBOSE? True / False)
-TWO_POINT = {'.tar.bz2': {False: 'tar xjf %s',  True: 'tar xjfv %s'},
-             '.tar.gz':  {False: 'tar xzf %s',  True: 'tar xzfv %s'},
-             '.tar.xz':  {False: 'tar xJf %s',  True: 'tar xJfv %s'}}
+TWO_PART = {'.tar.bz2': {False: 'tar xjf %s && rm -f %s', True: 'tar xjfv %s && rm -f %s'},
+            '.tar.gz':  {False: 'tar xzf %s && rm -f %s', True: 'tar xzfv %s && rm -f %s'},
+            '.tar.xz':  {False: 'tar xJf %s && rm -f %s', True: 'tar xJfv %s && rm -f %s'}}
 
-ONE_POINT = {'.bz2':     {False: 'bzip2 -d %s', True: 'bzip2 -dv %s'},
-             '.gz':      {False: 'gunzip %s',   True: 'gunzip -v %s'},
-             '.tar':     {False: 'tar xf %s',   True: 'tar xvf %s'},
-             '.tbz2':    {False: 'tar xjf %s',  True: 'tar xjfv %s'},
-             '.tgz':     {False: 'tar xzf %s',  True: 'tar xzfv %s'},
-             '.zip':     {False: 'unzip %s',    True: 'unzip -v %s'}}
+ONE_PART = {'.bz2':     {False: 'bzip2 -d %s',            True: 'bzip2 -dv %s'},
+            '.gz':      {False: 'gunzip %s',              True: 'gunzip -v %s'},
+            '.tar':     {False: 'tar xf %s && rm -f %s',  True: 'tar xvf %s && rm -f %s'},
+            '.tbz2':    {False: 'tar xjf %s && rm -f %s', True: 'tar xjfv %s && rm -f %s'},
+            '.tgz':     {False: 'tar xzf %s && rm -f %s', True: 'tar xzfv %s && rm -f %s'},
+            '.zip':     {False: 'unzip %s && rm -f %s',   True: 'unzip -v %s && rm -f %s'}}
 
 # CONFIGURABLE COMPRESSION OPTION  (VERBOSE? True / False)
-COMPRESS = {False: 'tar zcf %s.tar.gz %s', True: 'tar zcfv %s.tar.gz %s'}
+COMPRESS = {False: 'tar zcf %s.tar.gz %s && rm -rf %s', True: 'tar zcfv %s.tar.gz %s && rm -rf %s'}
 
 # CONSTANTS (DO NOT TOUCH)
 HELP_FLAGS = ['-h', '--h', '-help', '--help', '--version']
@@ -73,22 +73,22 @@ def handle_one_path(path, verbose):
         NOTE: The suffixes supplied are case-independent.
     """
     # check if the path has a listed two-part ending
-    for ending in TWO_POINT:
+    for ending in TWO_PART:
         if path.lower().endswith(ending):
             # decompress it
-            os.system(TWO_POINT[ending][verbose] % path)
+            os.system(TWO_PART[ending][verbose].replace('%s', path))
             return
 
     # then check if the path has a listed one-parth ending
-    for ending in ONE_POINT:
+    for ending in ONE_PART:
         if path.lower().endswith(ending):
             # decompress it
-            os.system(ONE_POINT[ending][verbose] % path)
+            os.system(ONE_PART[ending][verbose].replace('%s', path))
             return
 
     # if not, then compress it
     path = path.rstrip('/').rstrip('\\')
-    os.system(COMPRESS[verbose] % (path, path))
+    os.system(COMPRESS[verbose].replace('%s', path))
 
 
 if __name__ == '__main__':
