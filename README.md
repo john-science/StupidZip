@@ -44,11 +44,13 @@ BUT!  AH HA!  BUT!  You just thought of this exceptional case where the above wo
 
 > Congratulations. I don't care.
 
-This program will not be bullet proof.  It will not have the full power of all those other tools. For that you would need: all those other tools.  This is only meant to be a helpful time-saver for the typical use-case of 99.9% of Linux users.
+This program will not be bullet proof.  It will not have the full power of all those other tools.  For that you would need: all those other tools.  This is only meant to be a helpful time-saver for the typical 99% use-case.  And because it always does the same thing, you will clearly know when you need a different tool.
 
 
 ## The Implementation
 
 This tool should work for any POSIX-style commandline.
 
-At first, this will be a single Python script. That will serve as a feature reference. Over time, versions will be added in other languages so that users can hack the program in the language of their choice.
+The first version of this tool will is a single Python script for reference.  For maximum user support, this script will run correctly under all Python v2.x and v3.x environments.  All future versions of this tool must conform to the behaivor in this script: the compression utiltity support, the commandline options, and the error handling.
+
+More versions of this tool will be added to this repository in other languages.  As this is a personal time-saving tool, users will benefit from having a hackable version in their language of choice.
