@@ -9,7 +9,7 @@ Why are we still memorizing tar flags?
 
 ![XKCD on tar](https://imgs.xkcd.com/comics/tar.png)
 
-Can't we just have one tool that looks at your file name and does the thing that you obviously want to do?  It is not that complicated.
+Can't we just have one tool that looks at the file name and does the thing that you obviously want to do?  It is not that complicated.
 
 Look, here is the functionality we want.  Just uncompress the compressed:
 
@@ -35,7 +35,7 @@ Fine. If you give this program a `-v` flag it will run whatever you are doing in
 
 #### What if there are errors?
 
-Any errors will be passed through, exactly as-is, to standard-out.  This includes the error that one of the necessary tools (`tar`, `gzip`, etc) are not installed.
+Any errors will be passed through, exactly as-is, to standard-out.  This includes the error that one of the necessary tools (`tar`, `gzip`, etc) is not installed.
 
 
 ## The "Problem"
@@ -51,6 +51,6 @@ This program will not be bullet proof.  It will not have the full power of all t
 
 This tool should work for any POSIX-style commandline.
 
-The first version of this tool will is a single Python script for reference.  For maximum user support, this script will run correctly under all Python v2.x and v3.x environments.  All future versions of this tool must conform to the behaivor in this script: the compression utiltity support, the commandline options, and the error handling.
+The first version of this tool will be a single Python script, for reference.  For maximum user support, this script will run correctly under all Python v2.x and v3.x environments.
 
-More versions of this tool will be added to this repository in other languages.  As this is a personal time-saving tool, users will benefit from having a hackable version in their language of choice.
+More versions of this tool will be added to this repository in other languages.  As this is a personal time-saving tool, users will benefit from having a hackable version in their language of choice.  All versions of this tool must conform to the behaivor in the original Python script: compression utiltity support, commandline options, and error handling.
