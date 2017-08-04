@@ -92,6 +92,10 @@ for n in $(seq 1 $#); do
         -v|--v|-verbose|--verbose)
             verbose=true
             ;;
+        -?)
+            usage    # Display a usage synopsis.
+            exit
+            ;;
         *)
             files[num_files]=$1
             (( num_files += 1 ))
