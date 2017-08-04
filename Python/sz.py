@@ -38,18 +38,23 @@ VERBOSE_FLAGS = ['-v', '--v', '-verbose', '--verbose']
 
 
 def main():
-    """ parse commandline and direct the primary tasks
+    """ parse command-line and direct the primary tasks
     """
     # handle help flag
     if [f for f in sys.argv[1:] if f.lower() in HELP_FLAGS]:
         usage()
 
-    # Determine if the user wants a verbose output
+    # parse command-line options
     verbose = False
     paths = [f for f in sys.argv[1:] if f.lower() not in VERBOSE_FLAGS]
     if len(paths) == 0:
+        # no input files provided
+        usage()
+    elif len([f for f in path if f.startswith('-')]) > 0:
+        # bad flag provided
         usage()
     elif len(paths) < len(sys.argv[1:]):
+        # verbose mode on
         verbose = True
 
     # handle the full list of file / directory paths, one at a time
