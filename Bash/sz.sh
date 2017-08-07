@@ -19,6 +19,7 @@ function usage {
 files=()
 num_files=0
 verbose=false
+bad_flag=false
 
 
 # file types for compression and decompression
@@ -53,7 +54,7 @@ decompress_verbose=("tar xjfv path && rm -f path" \
                     "tar xzfv path && rm -f path" \
                     "unzip path && rm -f path")
 compress="tar zcf path.tar.gz path && rm -rf path"
-compress_vebose="tar zcfv path.tar.gz path && rm -rf path"
+compress_verbose="tar zcfv path.tar.gz path && rm -rf path"
 
 
 # take a single file/directory and dearchive it if possible, otherwise archive it
@@ -71,13 +72,20 @@ function archive_action {
             return
         fi
     done
+    
+    # strip possible trailing slashes
+    new_path=$1
+    if [[ $1 == */ || $1 == *\\ ]]
+    then
+        new_path=${new_path:0:${#new_path}-1}
+    fi
 
     # the file/directory must need to be archived
     if [[ $verbose == true ]]
     then
-        eval ${compress_verbose//path/$1}
+        eval ${compress_verbose//path/$new_path}
     else
-        eval ${compress//path/$1}
+        eval ${compress//path/$new_path}
     fi
 }
 
@@ -86,14 +94,14 @@ function archive_action {
 for n in $(seq 1 $#); do
     case $1 in
         -h|--h|-help|--help)
-            usage    # Display a usage synopsis.
+            usage
             exit
             ;;
         -v|--v|-verbose|--verbose)
             verbose=true
             ;;
         -?)          # Bad flag given.
-            usage    # Display a usage synopsis.
+            usage
             exit
             ;;
         *)
