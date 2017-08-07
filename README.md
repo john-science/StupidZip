@@ -5,11 +5,11 @@
 
 ## The Goal
 
-Why are we still memorizing tar flags?
+Why are we still memorizing `tar` flags?
 
 ![XKCD on tar](https://imgs.xkcd.com/comics/tar.png)
 
-Can't we just have one tool that looks at the file name and does the thing that you obviously want to do?  It is not that complicated.
+For that matter, why are we still memorizing `zip` flags, `gzip` flags, and `bzip2` flags?  Can't we just have one tool that looks at the file name and does the thing that you obviously want to do?  It is not that complicated.
 
 Look, here is the functionality we want.  Just uncompress the compressed:
 
