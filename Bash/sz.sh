@@ -92,7 +92,7 @@ for n in $(seq 1 $#); do
         -v|--v|-verbose|--verbose)
             verbose=true
             ;;
-        -?)
+        -?)          # Bad flag given.
             usage    # Display a usage synopsis.
             exit
             ;;
