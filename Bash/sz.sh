@@ -1,7 +1,8 @@
 #!/bin/sh
 # POSIX
 
-# documentation to be printed in usage/help menu
+
+# Documentation to be printed in usage / help menu
 function usage {
   echo "StupidZip"
   echo "Usage: sz [-vh] [FILE or DIRECTORY]..."
@@ -15,50 +16,43 @@ function usage {
 }
 
 
-# variables for command-line parsing
-files=()
-num_files=0
-verbose=false
-bad_flag=false
-
-
-# file types for compression and decompression
-file_types=(".tar.bz2" \
-            ".tar.gz" \
-            ".tar.xz" \
-            ".bz2" \
-            ".gz" \
-            ".jar" \
-            ".tar" \
-            ".tbz2" \
-            ".tgz" \
-            ".zip")
-decompress=("tar xjf path && rm -f path" \
-            "tar xzf path && rm -f path" \
-            "tar xJf path && rm -f path" \
-            "bzip2 -d path" \
-            "gunzip path" \
-            "jar xf path && rm -f path" \
-            "tar xf path && rm -f path" \
-            "tar xjf path && rm -f path" \
-            "tar xzf path && rm -f path" \
-            "unzip path && rm -f path")
-decompress_verbose=("tar xjfv path && rm -f path" \
-                    "tar xzfv path && rm -f path" \
-                    "tar xJfv path && rm -f path" \
-                    "bzip2 -dv path" \
-                    "gunzip -v path" \
-                    "jar xfv path && rm -f path" \
-                    "tar xfv path && rm -f path" \
-                    "tar xjfv path && rm -f path" \
-                    "tar xzfv path && rm -f path" \
-                    "unzip path && rm -f path")
-compress="tar zcf path.tar.gz path && rm -rf path"
-compress_verbose="tar zcfv path.tar.gz path && rm -rf path"
-
-
-# take a single file/directory and dearchive it if possible, otherwise archive it
+# Take a single file/directory and dearchive it if possible, otherwise archive it
+# Input Parameter 1: a file / directory path
 function archive_action {
+    # file types for compression and decompression
+    file_types=(".tar.bz2" \
+                ".tar.gz" \
+                ".tar.xz" \
+                ".bz2" \
+                ".gz" \
+                ".jar" \
+                ".tar" \
+                ".tbz2" \
+                ".tgz" \
+                ".zip")
+    decompress=("tar xjf path && rm -f path" \
+                "tar xzf path && rm -f path" \
+                "tar xJf path && rm -f path" \
+                "bzip2 -d path" \
+                "gunzip path" \
+                "jar xf path && rm -f path" \
+                "tar xf path && rm -f path" \
+                "tar xjf path && rm -f path" \
+                "tar xzf path && rm -f path" \
+                "unzip path && rm -f path")
+    decompress_verbose=("tar xjfv path && rm -f path" \
+                        "tar xzfv path && rm -f path" \
+                        "tar xJfv path && rm -f path" \
+                        "bzip2 -dv path" \
+                        "gunzip -v path" \
+                        "jar xfv path && rm -f path" \
+                        "tar xfv path && rm -f path" \
+                        "tar xjfv path && rm -f path" \
+                        "tar xzfv path && rm -f path" \
+                        "unzip path && rm -f path")
+    compress="tar zcf path.tar.gz path && rm -rf path"
+    compress_verbose="tar zcfv path.tar.gz path && rm -rf path"
+
     # check if the file is already archived, and un-archive it
     for i in $(seq 0 $(( ${#file_types[@]} - 1 )) ); do
         if [[ $1 == *${file_types[i]} ]]
@@ -90,7 +84,26 @@ function archive_action {
 }
 
 
-# COMMAND-LINE PARSING
+# Loop through all files / directories and (de)compress them
+# Input Parameters: list of input files / directories
+function all_archive_actions {
+    for file in ${@}
+    do
+        archive_action $file
+    done
+}
+
+
+# END FUNCTION DECLARATIONS
+
+
+# variables for command-line parsing
+files=()
+num_files=0
+verbose=false
+
+
+# Command-Line Parsing
 for n in $(seq 1 $#); do
     case $1 in
         -h|--h|-help|--help)
@@ -112,7 +125,5 @@ for n in $(seq 1 $#); do
 done
 
 
-# LOOP THROUGH ALL FILES/DIRECTORIES AND (DE)COMPRESS THEM
-for file in ${files[@]}; do
-    archive_action $file
-done
+# Finally, do the actually compressing and decompressing.
+all_archive_actions ${files[@]}
