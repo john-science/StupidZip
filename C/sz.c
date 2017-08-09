@@ -139,13 +139,19 @@ int main(int argc, char *argv[])
     {
         if (argv[i][0] == '-') {
             for (f=0; f < NUM_HELP_FLAGS; f++) {
-                fprintf(stdout, USAGE);
-                return 0;
+                if (strcmp(argv[i], HELP_FLAGS[f]) == 0)
+                {
+                    fprintf(stdout, USAGE);
+                    return 0;
+                }
             }
             for (f=0; f < NUM_VERBOSE_FLAGS; f++) {
-                verbose = 1;
-                verbose_index = i;
-                break;
+                if (strcmp(argv[i], VERBOSE_FLAGS[f]) == 0)
+                {
+                    verbose = 1;
+                    verbose_index = i;
+                    break;
+                }
             }
         }
     }
