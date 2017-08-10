@@ -91,7 +91,7 @@ void replace_all_questions(char *str, const char *from, char *to)
 
 /**
  * Custom string length function for null-terminated char arrays.
- * This exists because we have only short strings and `int` is
+ * This exists because we have only short char arrays and `int` is
  * a more convenient return type.
  */
 int str_len(char *s)
@@ -124,7 +124,10 @@ void strip_trailing_slash(char *s)
  */
 int main(int argc, char *argv[])
 {
-    int i = 0, j = 0, f = 0, verbose = 0, verbose_index = -999, type_len = 0, path_len = 0, matches = 0;
+    int i = 0, j = 0, f = 0,
+        verbose = 0, verbose_index = -999,
+        type_len = 0, path_len = 0,
+        matches = 0;
     char command[MAX_CMN_LEN] = "";
 
     /* make suer that some command is passed to this program */
