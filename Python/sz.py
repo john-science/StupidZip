@@ -17,20 +17,20 @@ import os
 import sys
 
 # CONFIGURABLE DECOMPRESSION SETTINGS  (VERBOSE? True / False)
-TWO_PART = {'.tar.bz2': {False: 'tar xjf %s && rm -f %s', True: 'tar xjfv %s && rm -f %s'},
-            '.tar.gz':  {False: 'tar xzf %s && rm -f %s', True: 'tar xzfv %s && rm -f %s'},
-            '.tar.xz':  {False: 'tar xJf %s && rm -f %s', True: 'tar xJfv %s && rm -f %s'}}
+TWO_PART = {'.tar.bz2': {False: 'tar xjf @ && rm -f @', True: 'tar xjfv @ && rm -f @'},
+            '.tar.gz':  {False: 'tar xzf @ && rm -f @', True: 'tar xzfv @ && rm -f @'},
+            '.tar.xz':  {False: 'tar xJf @ && rm -f @', True: 'tar xJfv @ && rm -f @'}}
 
-ONE_PART = {'.bz2':     {False: 'bzip2 -d %s',            True: 'bzip2 -dv %s'},
-            '.gz':      {False: 'gunzip %s',              True: 'gunzip -v %s'},
-            '.jar':     {False: 'jar xf %s && rm -f %s',  True: 'jar xfv %s && rm -f %s'},
-            '.tar':     {False: 'tar xf %s && rm -f %s',  True: 'tar xfv %s && rm -f %s'},
-            '.tbz2':    {False: 'tar xjf %s && rm -f %s', True: 'tar xjfv %s && rm -f %s'},
-            '.tgz':     {False: 'tar xzf %s && rm -f %s', True: 'tar xzfv %s && rm -f %s'},
-            '.zip':     {False: 'unzip %s && rm -f %s',   True: 'unzip -v %s && rm -f %s'}}
+ONE_PART = {'.bz2':     {False: 'bzip2 -d @',            True: 'bzip2 -dv @'},
+            '.gz':      {False: 'gunzip @',              True: 'gunzip -v @'},
+            '.jar':     {False: 'jar xf @ && rm -f @',  True: 'jar xfv @ && rm -f @'},
+            '.tar':     {False: 'tar xf @ && rm -f @',  True: 'tar xfv @ && rm -f @'},
+            '.tbz2':    {False: 'tar xjf @ && rm -f @', True: 'tar xjfv @ && rm -f @'},
+            '.tgz':     {False: 'tar xzf @ && rm -f @', True: 'tar xzfv @ && rm -f @'},
+            '.zip':     {False: 'unzip @ && rm -f @',   True: 'unzip -v @ && rm -f @'}}
 
 # CONFIGURABLE COMPRESSION OPTION  (VERBOSE? True / False)
-COMPRESS = {False: 'tar zcf %s.tar.gz %s && rm -rf %s', True: 'tar zcfv %s.tar.gz %s && rm -rf %s'}
+COMPRESS = {False: 'tar zcf @.tar.gz @ && rm -rf @', True: 'tar zcfv @.tar.gz @ && rm -rf @'}
 
 # CONSTANTS (DO NOT TOUCH)
 HELP_FLAGS = ['-h', '--h', '-help', '--help']
@@ -81,19 +81,19 @@ def handle_one_path(path, verbose):
     for ending in TWO_PART:
         if path.lower().endswith(ending):
             # decompress it
-            os.system(TWO_PART[ending][verbose].replace('%s', path))
+            os.system(TWO_PART[ending][verbose].replace('@', path))
             return
 
     # then check if the path has a listed one-parth ending
     for ending in ONE_PART:
         if path.lower().endswith(ending):
             # decompress it
-            os.system(ONE_PART[ending][verbose].replace('%s', path))
+            os.system(ONE_PART[ending][verbose].replace('@', path))
             return
 
     # if not, then compress it
     path = path.rstrip('/').rstrip('\\')
-    os.system(COMPRESS[verbose].replace('%s', path))
+    os.system(COMPRESS[verbose].replace('@', path))
 
 
 if __name__ == '__main__':
