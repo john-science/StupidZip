@@ -30,28 +30,28 @@ function archive_action {
                 ".tbz2" \
                 ".tgz" \
                 ".zip")
-    decompress=("tar xjf path && rm -f path" \
-                "tar xzf path && rm -f path" \
-                "tar xJf path && rm -f path" \
-                "bzip2 -d path" \
-                "gunzip path" \
-                "jar xf path && rm -f path" \
-                "tar xf path && rm -f path" \
-                "tar xjf path && rm -f path" \
-                "tar xzf path && rm -f path" \
-                "unzip path && rm -f path")
-    decompress_verbose=("tar xjfv path && rm -f path" \
-                        "tar xzfv path && rm -f path" \
-                        "tar xJfv path && rm -f path" \
-                        "bzip2 -dv path" \
-                        "gunzip -v path" \
-                        "jar xfv path && rm -f path" \
-                        "tar xfv path && rm -f path" \
-                        "tar xjfv path && rm -f path" \
-                        "tar xzfv path && rm -f path" \
-                        "unzip path && rm -f path")
-    compress="tar zcf path.tar.gz path && rm -rf path"
-    compress_verbose="tar zcfv path.tar.gz path && rm -rf path"
+    decompress=("tar xjf @ && rm -f @" \
+                "tar xzf @ && rm -f @" \
+                "tar xJf @ && rm -f @" \
+                "bzip2 -d @" \
+                "gunzip @" \
+                "jar xf @ && rm -f @" \
+                "tar xf @ && rm -f @" \
+                "tar xjf @ && rm -f @" \
+                "tar xzf @ && rm -f @" \
+                "unzip @ && rm -f @")
+    decompress_verbose=("tar xjfv @ && rm -f @" \
+                        "tar xzfv @ && rm -f @" \
+                        "tar xJfv @ && rm -f @" \
+                        "bzip2 -dv @" \
+                        "gunzip -v @" \
+                        "jar xfv @ && rm -f @" \
+                        "tar xfv @ && rm -f @" \
+                        "tar xjfv @ && rm -f @" \
+                        "tar xzfv @ && rm -f @" \
+                        "unzip @ && rm -f @")
+    compress="tar zcf @.tar.gz @ && rm -rf @"
+    compress_verbose="tar zcfv @.tar.gz @ && rm -rf @"
 
     # check if the file is already archived, and un-archive it
     for i in $(seq 0 $(( ${#file_types[@]} - 1 )) ); do
@@ -59,9 +59,9 @@ function archive_action {
         then
             if [[ $verbose == true ]]
             then
-                eval ${decompress_verbose[i]//path/$1}
+                eval ${decompress_verbose[i]//@/$1}
             else
-                eval ${decompress[i]//path/$1}
+                eval ${decompress[i]//@/$1}
             fi
             return
         fi
@@ -77,9 +77,9 @@ function archive_action {
     # the file/directory must need to be archived
     if [[ $verbose == true ]]
     then
-        eval ${compress_verbose//path/$new_path}
+        eval ${compress_verbose//@/$new_path}
     else
-        eval ${compress//path/$new_path}
+        eval ${compress//@/$new_path}
     fi
 }
 
