@@ -24,28 +24,28 @@ const char *FILE_TYPES[] = {".tar.bz2",
                             ".tbz2",
                             ".tgz",
                             ".zip"};
-const char *DECOMPRESS[] = {"tar xjf ? && rm -f ?",
-                            "tar xzf ? && rm -f ?",
-                            "tar xJf ? && rm -f ?",
-                            "bzip2 -d ?",
-                            "gunzip ?",
-                            "jar xf ? && rm -f ?",
-                            "tar xf ? && rm -f ?",
-                            "tar xjf ? && rm -f ?",
-                            "tar xzf ? && rm -f ?",
-                            "unzip ? && rm -f ?"};
-const char *DECOMPRESS_VERBOSE[] = {"tar xjfv ? && rm -f ?",
-                                    "tar xzfv ? && rm -f ?",
-                                    "tar xJfv ? && rm -f ?",
-                                    "bzip2 -dv ?",
-                                    "gunzip -v ?",
-                                    "jar xfv ? && rm -f ?",
-                                    "tar xfv ? && rm -f ?",
-                                    "tar xjfv ? && rm -f ?",
-                                    "tar xzfv ? && rm -f ?",
-                                    "unzip ? && rm -f ?"};
-const char *COMPRESS = "tar zcf ?.tar.gz ? && rm -rf ?";
-const char *COMPRESS_VERBOSE = "tar zcfv ?.tar.gz ? && rm -rf ?";
+const char *DECOMPRESS[] = {"tar xjf @ && rm -f @",
+                            "tar xzf @ && rm -f @",
+                            "tar xJf @ && rm -f @",
+                            "bzip2 -d @",
+                            "gunzip @",
+                            "jar xf @ && rm -f @",
+                            "tar xf @ && rm -f @",
+                            "tar xjf @ && rm -f @",
+                            "tar xzf @ && rm -f @",
+                            "unzip @ && rm -f @"};
+const char *DECOMPRESS_VERBOSE[] = {"tar xjfv @ && rm -f @",
+                                    "tar xzfv @ && rm -f @",
+                                    "tar xJfv @ && rm -f @",
+                                    "bzip2 -dv @",
+                                    "gunzip -v @",
+                                    "jar xfv @ && rm -f @",
+                                    "tar xfv @ && rm -f @",
+                                    "tar xjfv @ && rm -f @",
+                                    "tar xzfv @ && rm -f @",
+                                    "unzip @ && rm -f @"};
+const char *COMPRESS = "tar zcf @.tar.gz @ && rm -rf @";
+const char *COMPRESS_VERBOSE = "tar zcfv @.tar.gz @ && rm -rf @";
 const int NUM_HELP_FLAGS = 4;
 const int NUM_VERBOSE_FLAGS = 4;
 const char *HELP_FLAGS[] = {"-h", "--h", "-help", "--help"};
@@ -55,18 +55,18 @@ const char *VERBOSE_FLAGS[] = {"-v", "--v", "-verbose", "--verbose"};
 /**
  * Custom string replacement function, designed for custom (de)compress strings.
  * Copy the `from` string to the `to` string, but
- * replace all `?` in `from` with `str`.
+ * replace all `@` in `from` with `str`.
  */
-void replace_all_questions(char *str, const char *from, char *to)
+void replace_all_ats(char *str, const char *from, char *to)
 {
     int s = 0, f = 0, t = 0;
 
     /* loop over characters in from array */
     while (from[f] != '\0')
     {
-        if (from[f] == '?')
+        if (from[f] == '@')
         {
-            /* if char in `from` array is '?', do replacement */
+            /* if char in `from` array is '@', do replacement */
             s = 0;
             while (str[s] != '\0')
             {
@@ -198,11 +198,11 @@ int main(int argc, char *argv[])
                 /* do the decompression */
                 if (verbose == 1)
                 {
-                    replace_all_questions(argv[i], DECOMPRESS_VERBOSE[f], command);
+                    replace_all_ats(argv[i], DECOMPRESS_VERBOSE[f], command);
                 }
                 else
                 {
-                    replace_all_questions(argv[i], DECOMPRESS[f], command);
+                    replace_all_ats(argv[i], DECOMPRESS[f], command);
                 }
                 system(command);
                 break;
@@ -219,11 +219,11 @@ int main(int argc, char *argv[])
         strip_trailing_slash(argv[i]);
         if (verbose == 1)
         {
-            replace_all_questions(argv[i], COMPRESS_VERBOSE, command);
+            replace_all_ats(argv[i], COMPRESS_VERBOSE, command);
         }
         else
         {
-            replace_all_questions(argv[i], COMPRESS, command);
+            replace_all_ats(argv[i], COMPRESS, command);
         }
         system(command);
     }
