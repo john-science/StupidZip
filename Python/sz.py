@@ -21,8 +21,8 @@ TWO_PART = {'.tar.bz2': {False: 'tar xjf @ && rm -f @', True: 'tar xjfv @ && rm 
             '.tar.gz':  {False: 'tar xzf @ && rm -f @', True: 'tar xzfv @ && rm -f @'},
             '.tar.xz':  {False: 'tar xJf @ && rm -f @', True: 'tar xJfv @ && rm -f @'}}
 
-ONE_PART = {'.bz2':     {False: 'bzip2 -d @',            True: 'bzip2 -dv @'},
-            '.gz':      {False: 'gunzip @',              True: 'gunzip -v @'},
+ONE_PART = {'.bz2':     {False: 'bzip2 -d @',           True: 'bzip2 -dv @'},
+            '.gz':      {False: 'gunzip @',             True: 'gunzip -v @'},
             '.jar':     {False: 'jar xf @ && rm -f @',  True: 'jar xfv @ && rm -f @'},
             '.tar':     {False: 'tar xf @ && rm -f @',  True: 'tar xfv @ && rm -f @'},
             '.tbz2':    {False: 'tar xjf @ && rm -f @', True: 'tar xjfv @ && rm -f @'},
