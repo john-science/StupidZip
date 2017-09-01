@@ -50,7 +50,7 @@ def main():
     if len(paths) == 0:
         # no input files provided
         usage()
-    elif len([f for f in path if f.startswith('-')]) > 0:
+    elif len([f for f in paths if f.startswith('-')]) > 0:
         # bad flag provided
         usage()
     elif len(paths) < len(sys.argv[1:]):
