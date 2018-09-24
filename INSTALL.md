@@ -10,6 +10,7 @@ The first thing to know is that three functionally identical versions of `Stupid
 ## C
 
 TODO: What if a previous version already exists?
+TODO: Can I make this script work equally well for other compilers? What are the most common compilers/versions?
 
     cd C
     gcc sz.c -o sz
