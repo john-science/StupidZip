@@ -1,4 +1,5 @@
 # Makefile for C-version of StupidZip
+#CC=g++
 CC=gcc
 CFLAGS=-c -Wall -O2
 
