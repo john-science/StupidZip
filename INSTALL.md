@@ -9,28 +9,30 @@ The first thing to know is that three functionally identical versions of `Stupid
 
 ## C
 
-TODO: What if a previous version already exists?
-TODO: Can I make this script work equally well for other compilers? What are the most common compilers/versions?
+> TODO: Can I make this script work equally well for other compilers? What are the most common compilers/versions?
 
+    sudo rm -f /usr/bin/sz
     cd C
     gcc sz.c -o sz
     sudo cp sz /usr/bin/
-    sudo chmod +x /usr/bin/sz
+    sudo chmod 755 /usr/bin/sz
 
 
 # BASH
 
-TODO: Is `+x` available to most operating systems?
+> TODO: Explanation
 
+    sudo rm -f /usr/bin/sz
     sudo cp Bash/sz.sh /usr/bin/
-    sudo chmod +x /usr/bin/sz.sh
+    sudo chmod 755 /usr/bin/sz.sh
     sudo ln -s /usr/bin/sz.sh /usr/bin/sz
 
 
 # Python
 
-TODO: How does this change for the Mac OS?
+> TODO: Explanation
 
+    sudo rm -f /usr/bin/sz
     sudo cp Python/sz.py /usr/bin/
-    sudo chmod +x /usr/bin/sz.py
+    sudo chmod 755 /usr/bin/sz.py
     sudo ln -s /usr/bin/sz.py /usr/bin/sz
