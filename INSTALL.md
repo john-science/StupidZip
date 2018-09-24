@@ -9,30 +9,36 @@ The first thing to know is that three functionally identical versions of `Stupid
 
 ## C
 
-> TODO: Can I make this script work equally well for other compilers? What are the most common compilers/versions?
+Here's the short version:
 
     sudo rm -f /usr/bin/sz
     cd C
-    gcc sz.c -o sz
+    make
     sudo cp sz /usr/bin/
     sudo chmod 755 /usr/bin/sz
+
+TODO: Explanation (gcc or g++)
 
 
 # BASH
 
-> TODO: Explanation
+Here's the short version:
 
     sudo rm -f /usr/bin/sz
     sudo cp Bash/sz.sh /usr/bin/
     sudo chmod 755 /usr/bin/sz.sh
     sudo ln -s /usr/bin/sz.sh /usr/bin/sz
 
+> TODO: Explanation
+
 
 # Python
 
-> TODO: Explanation
+Here's the short version:
 
     sudo rm -f /usr/bin/sz
     sudo cp Python/sz.py /usr/bin/
     sudo chmod 755 /usr/bin/sz.py
     sudo ln -s /usr/bin/sz.py /usr/bin/sz
+
+> TODO: Explanation
