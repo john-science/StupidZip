@@ -1,10 +1,12 @@
 # Installing StupidZip
 
-> WARNING: Install Instructions are under development. Help me make them complete for your favorite distro of Linux, Unix, or Mac!
+> WARNING: Install Instructions are under development. Help me improve them for your favorite `Nix distro!
 
-The goal of this Install guide is to help you install `StupidZip` in your typical Linux, Unix, or Mac (here-to-fore call `Nix) distro. `StupidZip` is only designed for vaguely POSIX-compliant operating systems, sorry Windows is not currently supported.
+The goal of this Install guide is to help you install `StupidZip` in your typical Linux, Unix, or Mac (Nix) distro. `StupidZip` is only designed for POSIX-compliant operating systems; sorry Windows is not currently supported.
 
-The first thing to know is that three functionally identical versions of `StupidZip` come in this package, one for each of the languages: `BASH`, `Python`, and `C`. Why does `StupidZip` come with these three versions? So that you can hack it and personalize it in the language of your choice. It is, after all, a personal convenience tool. It seems likely that a user will want to personalize it further. So, pick the version for the language you know (or like) best and follow the instructions below.
+The first thing to know is that three functionally identical versions of `StupidZip` come in this package, one for each of the languages: `BASH`, `Python`, and `C`. These all work exactly the same, and are only provided so that you can hack the tool in a language you like. This is, afterall, just a personal convenience tool, you should be able to personalize it.
+
+Follow the instructions below for whichever language you prefer.
 
 
 ## C
